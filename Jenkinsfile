@@ -7,7 +7,7 @@ pipeline {
           docker version
           docker info
           ls
-          docker build -t .
+          docker build -t nginx-hello .
         '''
       }
     }
