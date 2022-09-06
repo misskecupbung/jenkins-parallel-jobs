@@ -15,7 +15,7 @@ pipeline {
     always {
       sh 'docker rm -f nginx-hello'
       sh 'docker ps'
-      sh 'docker run -itd -p8080:80 nginx-hello nginx-hello'
+      sh 'docker run -itd --name nginx-hello -p8080:80 nginx-hello'
     }
   }
 }
