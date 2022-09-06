@@ -6,7 +6,6 @@ pipeline {
         sh '''
           docker version
           docker info
-          ls
           docker build -t nginx-hello .
         '''
       }
@@ -14,7 +13,9 @@ pipeline {
   }
   post {
     always {
+      sh 'docker rm -f nginx-hello'
       sh 'docker ps'
+      sh 'docker run -itd -p8080:80 nginx-hello nginx-hello'
     }
   }
 }
