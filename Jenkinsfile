@@ -28,7 +28,7 @@ pipeline {
     stage("Push a new nginx-hello container") {
       steps {
         sh 'docker tag nginx-hello 10.33.109.104/httpd/nginx-hello'
-        sh 'echo $harbor_PSW | docker login 10.33.104.109 -u $harbor_USR --password-stdin'
+        sh 'echo $harbor_PSW | docker login 10.33.109.104 -u $harbor_USR --password-stdin'
         sh 'docker push 10.33.109.104/httpd/nginx-hello'
       }
     }
