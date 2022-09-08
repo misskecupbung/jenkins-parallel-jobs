@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  parameters {
+    booleanParam(name: 'skip_all_steps', defaultValue: false, description: 'When changed parameters in pipeline, just update code from git')
+  }
   environment {
     harbor=credentials('harbor')
   }
@@ -8,6 +11,11 @@ pipeline {
       steps {
         sh 'docker version'
         sh 'docker info'
+      }
+    }
+    stage("Checkout SCM"){
+      steps {
+        checkout scm
       }
     }
     stage("Build docker image") {
